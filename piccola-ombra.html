@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La piccola ombra – Romanzo</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:#050608;
+      color:#f5f1e8;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:stretch;
+      padding:20px;
+    }
+
+    .frame{
+      width:100%;
+      max-width:1280px;
+      border-radius:24px;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(0,0.9fr);
+      background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(0,0,0,0.8));
+      box-shadow:0 24px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    @media(max-width:900px){
+      .frame{grid-template-columns:1fr}
+    }
+
+    /* LEFT PANEL: TEXT */
+    .left{
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      border-right:1px solid rgba(255,255,255,0.06);
+      overflow-y:auto;
+    }
+
+    .book-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:1.8rem;
+      letter-spacing:0.07em;
+      text-transform:uppercase;
+    }
+
+    .chapter-title{
+      margin-top:6px;
+      font-size:1rem;
+      letter-spacing:0.08em;
+      color:#c7c3bb;
+      text-transform:uppercase;
+    }
+
+    .chapter-text{
+      margin-top:12px;
+      line-height:1.7;
+      font-size:0.95rem;
+      color:#e8e4db;
+      white-space:pre-line;
+    }
+
+    /* RIGHT PANEL */
+    .right{
+      position:relative;
+      overflow:hidden;
+      background:#060709;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .right::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('assets/nina-bg.jpg') center/cover no-repeat;
+      filter:grayscale(70%) contrast(1.05);
+      opacity:0.45;
+      z-index:0;
+    }
+
+    .right::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at bottom,rgba(0,0,0,0.75),rgba(0,0,0,0.35));
+      z-index:0;
+    }
+
+    .right-inner{
+      position:relative;
+      z-index:1;
+      height:100%;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .video-wrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,0.5);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    .index-title{
+      margin-top:4px;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:1.1rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+    }
+
+    .chapter-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      margin-top:8px;
+    }
+
+    .chapter-list li a{
+      text-decoration:none;
+      color:#f5f1e8;
+      font-size:0.9rem;
+      padding:6px 10px;
+      border-radius:12px;
+      background:rgba(5,6,8,0.55);
+      border:1px solid rgba(245,241,232,0.18);
+      display:inline-block;
+      transition:background 0.15s ease,border-color 0.15s ease;
+    }
+
+    .chapter-list li a:hover{
+      background:rgba(0,0,0,0.8);
+      border-color:rgba(199,154,89,0.75);
+    }
+
+    .divider{
+      margin:10px 0;
+      opacity:0.4;
+      border-bottom:1px dashed rgba(255,255,255,0.3);
+    }
+
+    .extras-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:0.95rem;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
+    }
+
+    .extras-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .extras-list li a{
+      text-decoration:none;
+      color:#f5f1e8;
+      font-size:0.86rem;
+      padding:6px 10px;
+      border-radius:12px;
+      background:rgba(5,6,8,0.55);
+      border:1px solid rgba(245,241,232,0.18);
+      display:inline-block;
+      transition:background 0.15s ease,border-color 0.15s ease;
+    }
+
+    .extras-list li a:hover{
+      background:rgba(0,0,0,0.8);
+      border-color:rgba(199,154,89,0.75);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- LEFT COLUMN: CHAPTER TEXT -->
+  <section class="left">
+    <div class="book-title">La piccola ombra</div>
+    <div class="chapter-title">Capitolo 1 — La piccola ombra</div>
+
+    <div id="chapterText" class="chapter-text">
+      Qui compare il testo del capitolo 1. Quando clicchi sugli altri capitoli, questo testo viene sostituito senza cambiare la parte destra della pagina.
+    </div>
+  </section>
+
+
+  <!-- RIGHT COLUMN: VIDEO + INDEX + EXTRAS -->
+  <aside class="right">
+    <div class="right-inner">
+
+      <div class="video-wrap">
+        <iframe
+          src="https://app.heygen.com/embedded-player/5d30985b642845ecbf37e2b469c0f04b"
+          title="HeyGen video player"
+          frameborder="0"
+          allow="encrypted-media; fullscreen;"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="index-title">Indice dei capitoli</div>
+
+      <ul class="chapter-list">
+        <li><a href="#" onclick="loadChapter('cap1.txt');return false;">Capitolo 1 — La piccola ombra</a></li>
+        <li><a href="#" onclick="loadChapter('cap2.txt');return false;">Capitolo 2</a></li>
+        <li><a href="#" onclick="loadChapter('cap3.txt');return false;">Capitolo 3</a></li>
+        <li><a href="#" onclick="loadChapter('cap4.txt');return false;">Capitolo 4</a></li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <div class="extras-title">Altre parti dell'opera</div>
+
+      <ul class="extras-list">
+        <li><a href="#">Il fumetto</a></li>
+        <li><a href="#">Le canzoni</a></li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <div class="extras-title">Bonus</div>
+
+      <ul class="extras-list">
+        <li><a href="#">Il podcast</a></li>
+        <li><a href="#">La critica</a></li>
+      </ul>
+
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  async function loadChapter(file){
+    try{
+      const res = await fetch(file);
+      const txt = await res.text();
+      document.getElementById('chapterText').innerText = txt;
+    }catch(e){
+      document.getElementById('chapterText').innerText = 'Capitolo non disponibile.';
+    }
+  }
+</script>
+
+</body>
+</html>
 
