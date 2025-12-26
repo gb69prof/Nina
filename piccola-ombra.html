@@ -6,6 +6,7 @@
   <title>La piccola ombra – Romanzo</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
+
     body{
       font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
       background:#050608;
@@ -13,15 +14,24 @@
       min-height:100vh;
       display:flex;
       flex-direction:column;
-      align-items:center;
+      overflow:hidden; /* la finestra non scorre, scorre solo il testo a sinistra */
+    }
+
+    /* CONTENITORE CENTRALE */
+    .page{
+      width:100%;
+      max-width:1280px;
+      margin:0 auto;
       padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      height:100vh; /* occupa tutta l'altezza della finestra */
     }
 
     /* TOP BAR */
     .top-bar{
-      width:100%;
-      max-width:1280px;
-      margin-bottom:10px;
+      flex:0 0 auto;
       display:flex;
       justify-content:space-between;
       align-items:center;
@@ -53,31 +63,32 @@
       opacity:0.8;
     }
 
-    /* MAIN LAYOUT */
+    /* LAYOUT PRINCIPALE: TESTO + COLONNA DESTRA FISSA */
     .layout{
-      width:100%;
-      max-width:1280px;
+      flex:1 1 auto;
       border-radius:24px;
       overflow:hidden;
       display:grid;
-      grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);
+      grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
       background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(0,0,0,0.8));
       box-shadow:0 24px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.04);
+      min-height:0; /* necessario perché la colonna sinistra possa scrollare */
     }
 
     @media(max-width:900px){
       .layout{grid-template-columns:1fr}
     }
 
-    /* LEFT: TESTO */
+    /* SINISTRA: TESTO SCORREVOLE */
     .left{
       padding:26px;
       display:flex;
       flex-direction:column;
       gap:16px;
       border-right:1px solid rgba(255,255,255,0.06);
-      overflow-y:auto;
-      background:rgba(5,6,8,0.85);
+      overflow-y:auto; /* QUI scorre il testo del capitolo */
+      background:rgba(5,6,8,0.9);
+      min-height:0;
     }
 
     .book-title{
@@ -85,6 +96,7 @@
       font-size:1.8rem;
       letter-spacing:0.07em;
       text-transform:uppercase;
+      flex:0 0 auto;
     }
 
     .chapter-title{
@@ -93,6 +105,7 @@
       letter-spacing:0.08em;
       color:#c7c3bb;
       text-transform:uppercase;
+      flex:0 0 auto;
     }
 
     .chapter-text{
@@ -101,9 +114,10 @@
       font-size:0.95rem;
       color:#e8e4db;
       white-space:pre-line;
+      flex:1 1 auto;
     }
 
-    /* RIGHT: VIDEO + INDICE + EXTRA */
+    /* DESTRA: VIDEO + INDICE + RIQUADRO EXTRA, FISSI */
     .right{
       position:relative;
       overflow:hidden;
@@ -138,10 +152,8 @@
       gap:16px;
     }
 
-    /* BLOCCO VIDEO (in alto a destra) */
-    .video-block{
-      margin-bottom:4px;
-    }
+    /* BLOCCO VIDEO */
+    .video-block{flex:0 0 auto;}
 
     .video-label{
       font-size:0.78rem;
@@ -170,10 +182,8 @@
       display:block;
     }
 
-    /* BLOCCO INDICE (sotto il video) */
-    .index-block{
-      margin-top:10px;
-    }
+    /* BLOCCO INDICE CAPITOLI */
+    .index-block{flex:0 0 auto;}
 
     .index-title{
       font-family:Georgia,'Times New Roman',serif;
@@ -211,10 +221,11 @@
 
     /* RIQUADRO COLORATO EXTRA LINK */
     .extra-card{
-      margin-top:14px;
+      flex:0 0 auto;
+      margin-top:8px;
       padding:12px 14px;
       border-radius:16px;
-      background:linear-gradient(135deg,rgba(199,154,89,0.28),rgba(5,6,8,0.9));
+      background:linear-gradient(135deg,rgba(199,154,89,0.28),rgba(5,6,8,0.96));
       border:1px solid rgba(199,154,89,0.7);
       box-shadow:0 12px 28px rgba(0,0,0,0.6);
     }
@@ -250,75 +261,86 @@
       transform:translateX(2px);
     }
 
+    @media(max-width:900px){
+      body{overflow:auto;}
+      .page{height:auto;}
+      .layout{min-height:600px;}
+      .left{max-height:400px;}
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- BARRA SUPERIORE: HOME + NOME PAGINA -->
-  <div class="top-bar">
-    <a class="home-link" href="index.html">Home</a>
-    <div class="top-title">Saga di Nina · La piccola ombra</div>
-  </div>
+  <div class="page">
 
-  <div class="layout">
+    <!-- BARRA SUPERIORE: HOME + NOME PAGINA -->
+    <div class="top-bar">
+      <a class="home-link" href="index.html">Home</a>
+      <div class="top-title">Saga di Nina · La piccola ombra</div>
+    </div>
 
-    <!-- SINISTRA: TESTO -->
-    <section class="left">
-      <div class="book-title">La piccola ombra</div>
-      <div class="chapter-title" id="chapterTitle">CAP 1 — La piccola ombra</div>
+    <div class="layout">
 
-      <div id="chapterText" class="chapter-text">
-        Qui compare il testo del CAP 1. Quando clicchi sugli altri capitoli,
-        questo testo viene sostituito senza cambiare la colonna di destra.
-      </div>
-    </section>
+      <!-- SINISTRA: TESTO CHE SCORRE -->
+      <section class="left">
+        <div class="book-title">La piccola ombra</div>
+        <div class="chapter-title" id="chapterTitle">CAP 1 — La piccola ombra</div>
 
-    <!-- DESTRA: VIDEO (sopra) + INDICE (sotto) + RIQUADRO COLORATO -->
-    <aside class="right">
-      <div class="right-inner">
+        <div id="chapterText" class="chapter-text">
+          Qui compare il testo del CAP 1. Scorrendo con la rotellina o il dito,
+          si muove solo questa colonna, mentre video e indice restano fissi.
+        </div>
+      </section>
 
-        <!-- VIDEO -->
-        <div class="video-block">
-          <div class="video-label">Video</div>
-          <div class="video-wrap">
-            <iframe
-              src="https://app.heygen.com/embedded-player/5d30985b642845ecbf37e2b469c0f04b"
-              title="HeyGen video player"
-              frameborder="0"
-              allow="encrypted-media; fullscreen;"
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+      <!-- DESTRA: VIDEO + INDICE + RIQUADRO EXTRA (FISSI) -->
+      <aside class="right">
+        <div class="right-inner">
+
+          <!-- VIDEO -->
+          <div class="video-block">
+            <div class="video-label">Video</div>
+            <div class="video-wrap">
+              <iframe
+                src="https://app.heygen.com/embedded-player/5d30985b642845ecbf37e2b469c0f04b"
+                title="HeyGen video player"
+                frameborder="0"
+                allow="encrypted-media; fullscreen;"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
           </div>
-        </div>
 
-        <!-- INDICE CAPITOLI -->
-        <div class="index-block">
-          <div class="index-title">Indice</div>
-          <ul class="chapter-list">
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');return false;">CAP 1 — La piccola ombra</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
-            <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
-          </ul>
-        </div>
+          <!-- INDICE CAPITOLI -->
+          <div class="index-block">
+            <div class="index-title">Indice</div>
+            <ul class="chapter-list">
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');return false;">CAP 1 — La piccola ombra</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
+              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
+            </ul>
+          </div>
 
-        <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
-        <div class="extra-card">
-          <div class="extra-title">Altri contenuti</div>
-          <ul class="extra-links">
-            <li><a href="#">Fumetto</a></li>
-            <li><a href="#">Podcast</a></li>
-            <li><a href="#">Critica letteraria</a></li>
-          </ul>
-        </div>
+          <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
+          <div class="extra-card">
+            <div class="extra-title">Altri contenuti</div>
+            <ul class="extra-links">
+              <li><a href="#">Fumetto</a></li>
+              <li><a href="#">Podcast</a></li>
+              <li><a href="#">Critica letteraria</a></li>
+            </ul>
+          </div>
 
-      </div>
-    </aside>
+        </div>
+      </aside>
+
+    </div>
 
   </div>
 
@@ -337,7 +359,7 @@
       }
     }
 
-    // Se vuoi, puoi caricare subito il primo capitolo reale all'apertura:
+    // opzionale: carica subito il primo capitolo reale all'apertura
     // loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');
   </script>
 
