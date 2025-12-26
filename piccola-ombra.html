@@ -117,6 +117,15 @@
       flex:1 1 auto;
     }
 
+    .placeholder-image{
+      display:block;
+      max-width:100%;
+      height:auto;
+      margin:0 auto;
+      border-radius:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,0.8);
+    }
+
     /* DESTRA: VIDEO + PANNELLO SCORREVOLE (INDICE + EXTRA) */
     .right{
       position:relative;
@@ -298,8 +307,7 @@
         <div class="chapter-title" id="chapterTitle">CAP 1 — LA PICCOLA OMBRA</div>
 
         <div id="chapterText" class="chapter-text">
-          Qui compare il testo del CAP 1. Scorrendo con la rotellina o il dito,
-          si muove solo questa colonna, mentre video e pannello di destra restano fissi.
+          <img src="assets/piccola-ombra-placeholder.png" alt="Illustrazione introduttiva de La piccola ombra" class="placeholder-image">
         </div>
       </section>
 
@@ -328,7 +336,7 @@
             <div class="index-block">
               <div class="index-title">Indice</div>
               <ul class="chapter-list">
-                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA');return false;">CAP 1 — LA PICCOLA OMBRA</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA');return false;">CAP 1</a></li>
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
