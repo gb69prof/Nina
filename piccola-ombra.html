@@ -14,7 +14,7 @@
       min-height:100vh;
       display:flex;
       flex-direction:column;
-      overflow:hidden; /* la finestra non scorre, scorre solo il testo a sinistra */
+      overflow:hidden; /* scorre solo il testo e l'indice, non la finestra */
     }
 
     /* CONTENITORE CENTRALE */
@@ -26,7 +26,7 @@
       display:flex;
       flex-direction:column;
       gap:10px;
-      height:100vh; /* occupa tutta l'altezza della finestra */
+      height:100vh; /* tutta l'altezza della finestra */
     }
 
     /* TOP BAR */
@@ -72,7 +72,7 @@
       grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
       background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(0,0,0,0.8));
       box-shadow:0 24px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.04);
-      min-height:0; /* necessario perché la colonna sinistra possa scrollare */
+      min-height:0;
     }
 
     @media(max-width:900px){
@@ -86,7 +86,7 @@
       flex-direction:column;
       gap:16px;
       border-right:1px solid rgba(255,255,255,0.06);
-      overflow-y:auto; /* QUI scorre il testo del capitolo */
+      overflow-y:auto;  /* scorre il capitolo */
       background:rgba(5,6,8,0.9);
       min-height:0;
     }
@@ -117,7 +117,7 @@
       flex:1 1 auto;
     }
 
-    /* DESTRA: VIDEO + INDICE + RIQUADRO EXTRA, FISSI */
+    /* DESTRA: VIDEO + INDICE + RIQUADRO EXTRA */
     .right{
       position:relative;
       overflow:hidden;
@@ -153,7 +153,9 @@
     }
 
     /* BLOCCO VIDEO */
-    .video-block{flex:0 0 auto;}
+    .video-block{
+      flex:0 0 auto;
+    }
 
     .video-label{
       font-size:0.78rem;
@@ -182,8 +184,13 @@
       display:block;
     }
 
-    /* BLOCCO INDICE CAPITOLI */
-    .index-block{flex:0 0 auto;}
+    /* BLOCCO INDICE CON SCORRIMENTO INDIPENDENTE */
+    .index-block{
+      flex:1 1 auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+    }
 
     .index-title{
       font-family:Georgia,'Times New Roman',serif;
@@ -191,6 +198,14 @@
       letter-spacing:0.18em;
       text-transform:uppercase;
       margin-bottom:6px;
+      flex:0 0 auto;
+    }
+
+    .index-scroll{
+      flex:1 1 auto;
+      min-height:0;
+      overflow-y:auto;   /* qui scorre l'indice */
+      padding-right:4px;
     }
 
     .chapter-list{
@@ -285,7 +300,7 @@
       <!-- SINISTRA: TESTO CHE SCORRE -->
       <section class="left">
         <div class="book-title">La piccola ombra</div>
-        <div class="chapter-title" id="chapterTitle">CAP 1 — La piccola ombra</div>
+        <div class="chapter-title" id="chapterTitle">CAP 1 — LA PICCOLA OMBRA</div>
 
         <div id="chapterText" class="chapter-text">
           Qui compare il testo del CAP 1. Scorrendo con la rotellina o il dito,
@@ -293,7 +308,7 @@
         </div>
       </section>
 
-      <!-- DESTRA: VIDEO + INDICE + RIQUADRO EXTRA (FISSI) -->
+      <!-- DESTRA: VIDEO + INDICE + RIQUADRO EXTRA -->
       <aside class="right">
         <div class="right-inner">
 
@@ -312,19 +327,21 @@
             </div>
           </div>
 
-          <!-- INDICE CAPITOLI -->
+          <!-- INDICE CAPITOLI CON SCROLL -->
           <div class="index-block">
             <div class="index-title">Indice</div>
-            <ul class="chapter-list">
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');return false;">CAP 1 — La piccola ombra</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
-              <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
-            </ul>
+            <div class="index-scroll">
+              <ul class="chapter-list">
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA');return false;">CAP 1 — LA PICCOLA OMBRA</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
+              </ul>
+            </div>
           </div>
 
           <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
@@ -333,6 +350,7 @@
             <ul class="extra-links">
               <li><a href="#">Fumetto</a></li>
               <li><a href="#">Podcast</a></li>
+              <li><a href="#">Canzoni</a></li>
               <li><a href="#">Critica letteraria</a></li>
             </ul>
           </div>
@@ -351,6 +369,7 @@
         if(!res.ok) throw new Error('HTTP ' + res.status);
         const txt = await res.text();
         document.getElementById('chapterText').innerText = txt;
+
         if(title){
           document.getElementById('chapterTitle').innerText = title;
         }
@@ -359,8 +378,8 @@
       }
     }
 
-    // opzionale: carica subito il primo capitolo reale all'apertura
-    // loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');
+    // Se vuoi caricare subito il primo capitolo reale:
+    // loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA');
   </script>
 
 </body>
