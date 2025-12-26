@@ -14,10 +14,9 @@
       min-height:100vh;
       display:flex;
       flex-direction:column;
-      overflow:hidden; /* scorre solo testo sinistra + pannello indice/extra */
+      overflow:hidden;
     }
 
-    /* CONTENITORE CENTRALE */
     .page{
       width:100%;
       max-width:1280px;
@@ -26,10 +25,9 @@
       display:flex;
       flex-direction:column;
       gap:10px;
-      height:100vh; /* tutta l'altezza della finestra */
+      height:100vh;
     }
 
-    /* TOP BAR */
     .top-bar{
       flex:0 0 auto;
       display:flex;
@@ -46,13 +44,6 @@
       border-radius:999px;
       border:1px solid rgba(245,241,232,0.4);
       background:rgba(5,6,8,0.7);
-      transition:background 0.15s ease,border-color 0.15s ease,transform 0.15s ease;
-    }
-
-    .home-link:hover{
-      background:rgba(0,0,0,0.9);
-      border-color:rgba(199,154,89,0.85);
-      transform:translateY(-1px);
     }
 
     .top-title{
@@ -63,7 +54,6 @@
       opacity:0.8;
     }
 
-    /* LAYOUT PRINCIPALE: TESTO + COLONNA DESTRA */
     .layout{
       flex:1 1 auto;
       border-radius:24px;
@@ -75,18 +65,13 @@
       min-height:0;
     }
 
-    @media(max-width:900px){
-      .layout{grid-template-columns:1fr}
-    }
-
-    /* SINISTRA: TESTO SCORREVOLE */
     .left{
       padding:26px;
       display:flex;
       flex-direction:column;
       gap:16px;
       border-right:1px solid rgba(255,255,255,0.06);
-      overflow-y:auto;  /* scorre il capitolo */
+      overflow-y:auto;
       background:rgba(5,6,8,0.9);
       min-height:0;
     }
@@ -96,7 +81,6 @@
       font-size:1.8rem;
       letter-spacing:0.07em;
       text-transform:uppercase;
-      flex:0 0 auto;
     }
 
     .chapter-title{
@@ -105,7 +89,6 @@
       letter-spacing:0.08em;
       color:#c7c3bb;
       text-transform:uppercase;
-      flex:0 0 auto;
     }
 
     .chapter-text{
@@ -126,7 +109,6 @@
       box-shadow:0 16px 40px rgba(0,0,0,0.8);
     }
 
-    /* DESTRA: VIDEO + PANNELLO SCORREVOLE (INDICE + EXTRA) */
     .right{
       position:relative;
       overflow:hidden;
@@ -161,10 +143,7 @@
       gap:12px;
     }
 
-    /* BLOCCO VIDEO (FISSO) */
-    .video-block{
-      flex:0 0 auto;
-    }
+    .video-block{flex:0 0 auto;}
 
     .video-label{
       font-size:0.78rem;
@@ -193,24 +172,21 @@
       display:block;
     }
 
-    /* PANNELLO INFERIORE SCORREVOLE: INDICE + ALTRI CONTENUTI */
     .lower-panel{
       flex:1 1 auto;
       min-height:0;
-      overflow-y:auto;       /* qui scorre indice + extra */
+      overflow-y:auto;
       padding-right:4px;
       display:flex;
       flex-direction:column;
       gap:12px;
     }
 
-    /* INDICE CAPITOLI */
     .index-title{
       font-family:Georgia,'Times New Roman',serif;
       font-size:1rem;
       letter-spacing:0.18em;
       text-transform:uppercase;
-      margin-bottom:4px;
     }
 
     .chapter-list{
@@ -230,16 +206,8 @@
       background:rgba(5,6,8,0.7);
       border:1px solid rgba(245,241,232,0.18);
       display:inline-block;
-      transition:background 0.15s ease,border-color 0.15s ease,transform 0.15s ease;
     }
 
-    .chapter-list li a:hover{
-      background:rgba(0,0,0,0.9);
-      border-color:rgba(199,154,89,0.85);
-      transform:translateX(2px);
-    }
-
-    /* RIQUADRO COLORATO EXTRA LINK (INCLUSO NEL PANNELLO SCORREVOLE) */
     .extra-card{
       padding:12px 14px;
       border-radius:16px;
@@ -272,28 +240,13 @@
       padding:6px 10px;
       border-radius:12px;
       display:inline-block;
-      transition:background 0.15s ease,transform 0.15s ease;
     }
-
-    .extra-links li a:hover{
-      background:#ffffff;
-      transform:translateX(2px);
-    }
-
-    @media(max-width:900px){
-      body{overflow:auto;}
-      .page{height:auto;}
-      .layout{min-height:600px;}
-      .left{max-height:400px;}
-    }
-
   </style>
 </head>
 <body>
 
   <div class="page">
 
-    <!-- BARRA SUPERIORE: HOME + NOME PAGINA -->
     <div class="top-bar">
       <a class="home-link" href="index.html">Home</a>
       <div class="top-title">Saga di Nina · La piccola ombra</div>
@@ -301,23 +254,20 @@
 
     <div class="layout">
 
-      <!-- SINISTRA: TESTO CHE SCORRE -->
       <section class="left">
         <div class="book-title">La piccola ombra</div>
         <div class="chapter-title" id="chapterTitle">CAP 1 — LA PICCOLA OMBRA</div>
 
         <div id="chapterText" class="chapter-text">
-          <img src="assets/piccola-ombra-placeholder.png"
-               alt="Illustrazione introduttiva de La piccola ombra"
+          <img src="assets/Copertina-ombra.png"
+               alt="Copertina La piccola ombra"
                class="placeholder-image">
         </div>
       </section>
 
-      <!-- DESTRA: VIDEO FISSO + PANNELLO SCORREVOLE -->
       <aside class="right">
         <div class="right-inner">
 
-          <!-- VIDEO -->
           <div class="video-block">
             <div class="video-label">Video</div>
             <div class="video-wrap">
@@ -333,9 +283,7 @@
             </div>
           </div>
 
-          <!-- PANNELLO SCORREVOLE: INDICE + ALTRI CONTENUTI -->
           <div class="lower-panel">
-            <!-- INDICE CAPITOLI -->
             <div class="index-block">
               <div class="index-title">Indice</div>
               <ul class="chapter-list">
@@ -343,22 +291,15 @@
                        onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA','https://app.heygen.com/embedded-player/5d30985b642845ecbf37e2b469c0f04b');return false;">CAP 1</a></li>
                 <li><a href="#"
                        onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2','https://app.heygen.com/embedded-player/205ad49635984fc7b1bbd7293ac9a0d0');return false;">CAP 2</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
-                <li><a href="#"
-                       onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
+                <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
               </ul>
             </div>
 
-            <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
             <div class="extra-card">
               <div class="extra-title">Altri contenuti</div>
               <ul class="extra-links">
@@ -383,6 +324,7 @@
         const res = await fetch(file);
         if(!res.ok) throw new Error('HTTP ' + res.status);
         const txt = await res.text();
+
         document.getElementById('chapterText').innerText = txt;
 
         if(title){
@@ -396,9 +338,6 @@
         document.getElementById('chapterText').innerText = 'Capitolo non disponibile.';
       }
     }
-
-    // Se vuoi caricare subito il primo capitolo reale:
-    // loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA','https://app.heygen.com/embedded-player/5d30985b642845ecbf37e2b469c0f04b');
   </script>
 
 </body>
