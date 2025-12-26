@@ -14,7 +14,7 @@
       min-height:100vh;
       display:flex;
       flex-direction:column;
-      overflow:hidden; /* scorre solo il testo e l'indice, non la finestra */
+      overflow:hidden; /* scorre solo testo sinistra + pannello indice/extra */
     }
 
     /* CONTENITORE CENTRALE */
@@ -63,7 +63,7 @@
       opacity:0.8;
     }
 
-    /* LAYOUT PRINCIPALE: TESTO + COLONNA DESTRA FISSA */
+    /* LAYOUT PRINCIPALE: TESTO + COLONNA DESTRA */
     .layout{
       flex:1 1 auto;
       border-radius:24px;
@@ -117,7 +117,7 @@
       flex:1 1 auto;
     }
 
-    /* DESTRA: VIDEO + INDICE + RIQUADRO EXTRA */
+    /* DESTRA: VIDEO + PANNELLO SCORREVOLE (INDICE + EXTRA) */
     .right{
       position:relative;
       overflow:hidden;
@@ -149,10 +149,10 @@
       padding:20px;
       display:flex;
       flex-direction:column;
-      gap:16px;
+      gap:12px;
     }
 
-    /* BLOCCO VIDEO */
+    /* BLOCCO VIDEO (FISSO) */
     .video-block{
       flex:0 0 auto;
     }
@@ -184,28 +184,24 @@
       display:block;
     }
 
-    /* BLOCCO INDICE CON SCORRIMENTO INDIPENDENTE */
-    .index-block{
+    /* PANNELLO INFERIORE SCORREVOLE: INDICE + ALTRI CONTENUTI */
+    .lower-panel{
       flex:1 1 auto;
       min-height:0;
+      overflow-y:auto;       /* qui scorre indice + extra */
+      padding-right:4px;
       display:flex;
       flex-direction:column;
+      gap:12px;
     }
 
+    /* INDICE CAPITOLI */
     .index-title{
       font-family:Georgia,'Times New Roman',serif;
       font-size:1rem;
       letter-spacing:0.18em;
       text-transform:uppercase;
-      margin-bottom:6px;
-      flex:0 0 auto;
-    }
-
-    .index-scroll{
-      flex:1 1 auto;
-      min-height:0;
-      overflow-y:auto;   /* qui scorre l'indice */
-      padding-right:4px;
+      margin-bottom:4px;
     }
 
     .chapter-list{
@@ -234,15 +230,14 @@
       transform:translateX(2px);
     }
 
-    /* RIQUADRO COLORATO EXTRA LINK */
+    /* RIQUADRO COLORATO EXTRA LINK (INCLUSO NEL PANNELLO SCORREVOLE) */
     .extra-card{
-      flex:0 0 auto;
-      margin-top:8px;
       padding:12px 14px;
       border-radius:16px;
       background:linear-gradient(135deg,rgba(199,154,89,0.28),rgba(5,6,8,0.96));
       border:1px solid rgba(199,154,89,0.7);
       box-shadow:0 12px 28px rgba(0,0,0,0.6);
+      margin-top:8px;
     }
 
     .extra-title{
@@ -304,11 +299,11 @@
 
         <div id="chapterText" class="chapter-text">
           Qui compare il testo del CAP 1. Scorrendo con la rotellina o il dito,
-          si muove solo questa colonna, mentre video e indice restano fissi.
+          si muove solo questa colonna, mentre video e pannello di destra restano fissi.
         </div>
       </section>
 
-      <!-- DESTRA: VIDEO + INDICE + RIQUADRO EXTRA -->
+      <!-- DESTRA: VIDEO FISSO + PANNELLO SCORREVOLE -->
       <aside class="right">
         <div class="right-inner">
 
@@ -327,10 +322,11 @@
             </div>
           </div>
 
-          <!-- INDICE CAPITOLI CON SCROLL -->
-          <div class="index-block">
-            <div class="index-title">Indice</div>
-            <div class="index-scroll">
+          <!-- PANNELLO SCORREVOLE: INDICE + ALTRI CONTENUTI -->
+          <div class="lower-panel">
+            <!-- INDICE CAPITOLI -->
+            <div class="index-block">
+              <div class="index-title">Indice</div>
               <ul class="chapter-list">
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — LA PICCOLA OMBRA');return false;">CAP 1 — LA PICCOLA OMBRA</a></li>
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
@@ -342,17 +338,17 @@
                 <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
               </ul>
             </div>
-          </div>
 
-          <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
-          <div class="extra-card">
-            <div class="extra-title">Altri contenuti</div>
-            <ul class="extra-links">
-              <li><a href="#">Fumetto</a></li>
-              <li><a href="#">Podcast</a></li>
-              <li><a href="#">Canzoni</a></li>
-              <li><a href="#">Critica letteraria</a></li>
-            </ul>
+            <!-- RIQUADRO COLORATO CON ALTRI COLLEGAMENTI -->
+            <div class="extra-card">
+              <div class="extra-title">Altri contenuti</div>
+              <ul class="extra-links">
+                <li><a href="#">Fumetto</a></li>
+                <li><a href="#">Podcast</a></li>
+                <li><a href="#">Canzoni</a></li>
+                <li><a href="#">Critica letteraria</a></li>
+              </ul>
+            </div>
           </div>
 
         </div>
