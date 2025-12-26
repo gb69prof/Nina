@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='it'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Nina – Premessa</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#f5f1e8;min-height:100vh;padding:20px;position:relative;background:#060607;}
+body::before{content:'';position:fixed;inset:0;background:url('assets/nina-bg.jpg') center/cover no-repeat;filter:grayscale(70%) contrast(1.1);opacity:.55;z-index:-2;}
+body::after{content:'';position:fixed;inset:0;background:linear-gradient(145deg,rgba(0,0,0,.55),rgba(0,0,0,.35));z-index:-1;}
+.frame{max-width:1080px;margin:0 auto;background:rgba(0,0,0,.55);border-radius:22px;padding:24px;backdrop-filter:blur(6px);box-shadow:0 20px 44px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:20px;}
+h1{font-family:Georgia,'Times New Roman',serif;font-size:2.1rem;line-height:1.2;}
+h1 span{color:#c79a59;font-weight:normal;}
+.p{color:#c7c3bb;line-height:1.7;}
+.video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:16px;overflow:hidden;background:rgba(0,0,0,.3);}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.footer{font-size:.75rem;color:#b0aba2;font-style:italic;}
+</style>
+</head>
+<body>
+<div class='frame'>
+<h1>La storia di <span>Nina</span>, raccontata da chi è rimasto.</h1>
+<div class='p'>
+Solo ora che il tempo mi scivola tra le mani come sabbia, posso raccontare questa storia.<br><br>
+Solo ora che il passato si sfilaccia ai margini della memoria, mentre l'oblio si allunga come un'ombra vorace.<br><br>
+Devo farlo prima che tutto svanisca. Prima che di lei, di mia madre, resti solo un sussurro indistinto nel vento.
+</div>
+<div class='video-wrap'>
+<iframe src='https://app.heygen.com/embedded-player/a2e8474490ea40b6ac33256465f0daed' title='Voce di Tamar' allow='encrypted-media; fullscreen;' allowfullscreen loading='lazy'></iframe>
+</div>
+<div class='footer'>
+L'immagine di Nina è lo sfondo velato di tutta la pagina. Sostituisci assets/nina-bg.jpg con la tua immagine.
+</div>
+</div>
+</body>
+</html>
