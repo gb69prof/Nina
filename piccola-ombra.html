@@ -32,6 +32,42 @@
       .frame{grid-template-columns:1fr}
     }
 
+    /* TOP BAR */
+    .top-bar{
+      width:100%;
+      max-width:1280px;
+      margin:0 auto 10px auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:#f5f1e8;
+      font-size:0.9rem;
+    }
+
+    .home-link{
+      text-decoration:none;
+      color:#f5f1e8;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(245,241,232,0.4);
+      background:rgba(5,6,8,0.7);
+      transition:background 0.15s ease,border-color 0.15s ease,transform 0.15s ease;
+    }
+
+    .home-link:hover{
+      background:rgba(0,0,0,0.9);
+      border-color:rgba(199,154,89,0.8);
+      transform:translateY(-1px);
+    }
+
+    .top-title{
+      font-family:Georgia,'Times New Roman',serif;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      font-size:0.8rem;
+      opacity:0.8;
+    }
+
     /* LEFT PANEL: TEXT */
     .left{
       padding:26px;
@@ -195,6 +231,11 @@
 </head>
 <body>
 
+<div class="top-bar">
+  <a class="home-link" href="index.html">Home</a>
+  <div class="top-title">Saga di Nina · La piccola ombra</div>
+</div>
+
 <div class="frame">
 
   <!-- LEFT COLUMN: CHAPTER TEXT -->
@@ -226,47 +267,8 @@
       <div class="index-title">Indice dei capitoli</div>
 
       <ul class="chapter-list">
-        <li><a href="#" onclick="loadChapter('cap1.txt');return false;">Capitolo 1 — La piccola ombra</a></li>
-        <li><a href="#" onclick="loadChapter('cap2.txt');return false;">Capitolo 2</a></li>
-        <li><a href="#" onclick="loadChapter('cap3.txt');return false;">Capitolo 3</a></li>
-        <li><a href="#" onclick="loadChapter('cap4.txt');return false;">Capitolo 4</a></li>
-      </ul>
-
-      <div class="divider"></div>
-
-      <div class="extras-title">Altre parti dell'opera</div>
-
-      <ul class="extras-list">
-        <li><a href="#">Il fumetto</a></li>
-        <li><a href="#">Le canzoni</a></li>
-      </ul>
-
-      <div class="divider"></div>
-
-      <div class="extras-title">Bonus</div>
-
-      <ul class="extras-list">
-        <li><a href="#">Il podcast</a></li>
-        <li><a href="#">La critica</a></li>
-      </ul>
-
-    </div>
-  </aside>
-
-</div>
-
-<script>
-  async function loadChapter(file){
-    try{
-      const res = await fetch(file);
-      const txt = await res.text();
-      document.getElementById('chapterText').innerText = txt;
-    }catch(e){
-      document.getElementById('chapterText').innerText = 'Capitolo non disponibile.';
-    }
-  }
-</script>
-
-</body>
-</html>
-
+        <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap1.txt','CAP 1 — La piccola ombra');return false;">CAP 1 — La piccola ombra</a></li>
+        <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
+        <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
+        <li><a href="#" onclick="loadChapter('Ombra/Romanzo/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
+        <li><a href="#" onclick="loadChapter
