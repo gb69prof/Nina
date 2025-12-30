@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicoletta Bellini – Romanzo</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:#050608;
+      color:#f5f1e8;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    .page{
+      width:100%;
+      max-width:1280px;
+      margin:0 auto;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      height:100vh;
+    }
+
+    .top-bar{
+      flex:0 0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:0.9rem;
+      color:#f5f1e8;
+    }
+
+    .home-link{
+      text-decoration:none;
+      color:#f5f1e8;
+      padding:6px 14px;
+      border-radius:999px;
+      border:1px solid rgba(245,241,232,0.4);
+      background:rgba(5,6,8,0.7);
+    }
+
+    .home-link:hover{
+      background:rgba(0,0,0,0.9);
+      border-color:rgba(199,154,89,0.85);
+      transform:translateY(-1px);
+    }
+
+    .top-title{
+      font-family:Georgia,'Times New Roman',serif;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      font-size:0.8rem;
+      opacity:0.8;
+    }
+
+    .layout{
+      flex:1 1 auto;
+      border-radius:24px;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);
+      background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(0,0,0,0.8));
+      box-shadow:0 24px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.04);
+      min-height:0;
+    }
+
+    @media(max-width:900px){
+      .layout{grid-template-columns:1fr}
+    }
+
+    .left{
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      border-right:1px solid rgba(255,255,255,0.06);
+      overflow-y:auto;
+      background:rgba(5,6,8,0.9);
+      min-height:0;
+    }
+
+    .book-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:1.8rem;
+      letter-spacing:0.07em;
+      text-transform:uppercase;
+    }
+
+    .chapter-title{
+      margin-top:6px;
+      font-size:1rem;
+      letter-spacing:0.08em;
+      color:#c7c3bb;
+      text-transform:uppercase;
+    }
+
+    .chapter-text{
+      margin-top:12px;
+      line-height:1.7;
+      font-size:0.95rem;
+      color:#e8e4db;
+      white-space:pre-line;
+      flex:1 1 auto;
+    }
+
+    .placeholder-image{
+      display:block;
+      max-width:100%;
+      height:auto;
+      margin:0 auto;
+      border-radius:16px;
+      box-shadow:0 16px 40px rgba(0,0,0,0.8);
+    }
+
+    .right{
+      position:relative;
+      overflow:hidden;
+      background:#060709;
+    }
+
+    .right::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:url('assets/nicoletta-bellini-copertina.jpg') center/cover no-repeat;
+      filter:grayscale(70%) contrast(1.05);
+      opacity:0.45;
+      z-index:0;
+    }
+
+    .right::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at bottom,rgba(0,0,0,0.75),rgba(0,0,0,0.35));
+      z-index:0;
+    }
+
+    .right-inner{
+      position:relative;
+      z-index:1;
+      height:100%;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .video-block{flex:0 0 auto;}
+
+    .video-label{
+      font-size:0.78rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:#d1cbc0;
+      margin-bottom:6px;
+    }
+
+    .video-wrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,0.7);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    .lower-panel{
+      flex:1 1 auto;
+      min-height:0;
+      overflow-y:auto;
+      padding-right:4px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .index-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:1rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+    }
+
+    .chapter-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      margin-top:4px;
+    }
+
+    .chapter-list li a{
+      text-decoration:none;
+      color:#f5f1e8;
+      font-size:0.9rem;
+      padding:6px 10px;
+      border-radius:12px;
+      background:rgba(5,6,8,0.7);
+      border:1px solid rgba(245,241,232,0.18);
+      display:inline-block;
+    }
+
+    .chapter-list li a:hover{
+      background:rgba(0,0,0,0.9);
+      border-color:rgba(199,154,89,0.85);
+      transform:translateX(2px);
+    }
+
+    .extra-card{
+      padding:12px 14px;
+      border-radius:16px;
+      background:linear-gradient(135deg,rgba(199,154,89,0.28),rgba(5,6,8,0.96));
+      border:1px solid rgba(199,154,89,0.7);
+      box-shadow:0 12px 28px rgba(0,0,0,0.6);
+      margin-top:8px;
+    }
+
+    .extra-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:0.9rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .extra-links{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .extra-links li a{
+      text-decoration:none;
+      color:#050608;
+      background:rgba(245,241,232,0.95);
+      font-size:0.86rem;
+      padding:6px 10px;
+      border-radius:12px;
+      display:inline-block;
+    }
+
+    .extra-links li a:hover{
+      background:#ffffff;
+      transform:translateX(2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <div class="top-bar">
+      <a class="home-link" href="index.html">Home</a>
+      <div class="top-title">Saga di Nina · Nicoletta Bellini</div>
+    </div>
+
+    <div class="layout">
+
+      <!-- SINISTRA: TESTO / IMMAGINE -->
+      <section class="left">
+        <div class="book-title">Nicoletta Bellini</div>
+        <div class="chapter-title" id="chapterTitle">CAP 1 — NICOLETTA BELLINI</div>
+
+        <div id="chapterText" class="chapter-text">
+          <img src="assets/nicoletta-bellini-copertina.jpg"
+               alt="Copertina Nicoletta Bellini"
+               class="placeholder-image">
+        </div>
+      </section>
+
+      <!-- DESTRA: VIDEO + INDICE + ALTRI CONTENUTI -->
+      <aside class="right">
+        <div class="right-inner">
+
+          <div class="video-block">
+            <div class="video-label">Video</div>
+            <div class="video-wrap">
+              <iframe
+                id="chapterVideo"
+                src=""
+                title="HeyGen video player"
+                frameborder="0"
+                allow="encrypted-media; fullscreen;"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="lower-panel">
+            <div class="index-block">
+              <div class="index-title">Indice</div>
+              <ul class="chapter-list">
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap1.txt','CAP 1 — NICOLETTA BELLINI');return false;">CAP 1</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap2.txt','CAP 2');return false;">CAP 2</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap3.txt','CAP 3');return false;">CAP 3</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap4.txt','CAP 4');return false;">CAP 4</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap5.txt','CAP 5');return false;">CAP 5</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap6.txt','CAP 6');return false;">CAP 6</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap7.txt','CAP 7');return false;">CAP 7</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap8.txt','CAP 8');return false;">CAP 8</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap9.txt','CAP 9');return false;">CAP 9</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap10.txt','CAP 10');return false;">CAP 10</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap11.txt','CAP 11');return false;">CAP 11</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap12.txt','CAP 12');return false;">CAP 12</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap13.txt','CAP 13');return false;">CAP 13</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap14.txt','CAP 14');return false;">CAP 14</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap15.txt','CAP 15');return false;">CAP 15</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap16.txt','CAP 16');return false;">CAP 16</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap17.txt','CAP 17');return false;">CAP 17</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap18.txt','CAP 18');return false;">CAP 18</a></li>
+                <li><a href="#"
+                       onclick="loadChapter('Nicoletta/Cap19.txt','CAP 19');return false;">CAP 19</a></li>
+              </ul>
+            </div>
+
+            <div class="extra-card">
+              <div class="extra-title">Altri contenuti</div>
+              <ul class="extra-links">
+                <li><a href="#">Fumetto</a></li>
+                <li><a href="#">Podcast</a></li>
+                <li><a href="#">Canzoni</a></li>
+                <li><a href="#">Critica letteraria</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <script>
+    async function loadChapter(file, title, videoSrc){
+      try{
+        const res = await fetch(file);
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const txt = await res.text();
+
+        document.getElementById('chapterText').innerText = txt;
+
+        if(title){
+          document.getElementById('chapterTitle').innerText = title;
+        }
+
+        if(videoSrc){
+          document.getElementById('chapterVideo').src = videoSrc;
+        }
+      }catch(e){
+        document.getElementById('chapterText').innerText = 'Capitolo non disponibile.';
+      }
+    }
+  </script>
+
+</body>
+</html>
 
