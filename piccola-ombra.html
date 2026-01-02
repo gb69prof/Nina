@@ -241,6 +241,23 @@
       border-radius:12px;
       display:inline-block;
     }
+
+    /* nuovo blocco video sotto "Altri contenuti" */
+    .extra-video{
+      margin-top:10px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(0,0,0,0.65);
+    }
+
+    .extra-video iframe{
+      width:100%;
+      height:260px;
+      border:0;
+      display:block;
+    }
+
   </style>
 </head>
 <body>
@@ -318,6 +335,19 @@
                 <li><a href="#">Critica letteraria</a></li>
               </ul>
             </div>
+
+            <!-- 🔽 NUOVO VIDEO INSERITO QUI -->
+            <div class="extra-video">
+              <iframe width="560" height="315"
+                src="https://app.heygen.com/embedded-player/ea7e123f5e53465a8aed663d6c41f207"
+                title="HeyGen video player"
+                frameborder="0"
+                allow="encrypted-media; fullscreen;"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <!-- 🔼 FINE NUOVO BLOCCO -->
+
           </div>
 
         </div>
@@ -351,4 +381,3 @@
 
 </body>
 </html>
-
